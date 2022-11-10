@@ -12,8 +12,8 @@ module counter_tb;
   wire [7:0] DISP0_preload; 
   wire [7:0] DISP1; 
   wire [7:0] DISP0;
-  //wire [5:0] count_value_show; 
-  //wire count_clk_show; 
+ wire [5:0] count_value_disp; 
+  wire count_clk_disp; 
  
   counter uut(.clk(clk), 
               .rst_n(rst_n), 
@@ -24,32 +24,30 @@ module counter_tb;
               .DISP0_preload(DISP0_preload), 
               .DISP1(DISP1), 
               .DISP0(DISP0) 
-              //.count_value_show(count_value_show), 
-              //.count_clk_show(count_clk_show)
+              .count_value_disp(count_value_disp), 
+              .count_clk_disp(count_clk_disp)
              ); 
  
   initial 
   begin 
-    clk = 1'b0; //set initial value of clock as 0 
+    clk = 1'b0; 
   end 
  
-  always //creates system clock that is 50MHz, so it switches every 20ns
+  always //creates system clock at 50MHz, so it switches every 20ns
     begin 
          #20 clk = ~clk; 
     end 
  
   initial 
-    begin //initial conditions are reset is 1 (so no reset), toggle is not activated, and enable is 1 so that the counter is active                 
+    begin              
       
       rst_n  = 1'b1; 
       toggle = 1'b0; 
       en    = 1'b1; 
-      preload <= 6'b100011; //preload value is set as given by lab expectations 
+      preload <= 6'b100011; 
            
  
-      //first test: test the reset function 
-      //we test this function by waiting for the counter to count for 500ns and then set reset to 0. 500ns later we set reset back to 1 to test if it worked 
-      //reset = 0 means that reset is activated so that the counter goes back to 0 (this can only happen because enable is still high)        
+      //first test: test the reset function  
       #500;
       rst_n = 1'b0; 
       toggle = 1'b0;
@@ -62,22 +60,17 @@ module counter_tb;
       en = 1'b1;    
       
       //second test: test the toggle function  
-      //we test this function by waiting for the counter to count 2800ns to show that it is capable of counting to 12 and then make toggle=1 (with enable = 1 of course)
-      //if toggle works, then the counter would begin counting down from the value its at (decimal value 12) to 0 
-      #2800; //wait this long so that the disp1 can be seen changing to 1 from, so that we can see count to 12 (i.e. past 10) 
+      #2800; 
       rst_n = 1'b1;
-      toggle = 1'b1; //we can see whether or not toggle switch works  
+      toggle = 1'b1;   
       en = 1'b1; 
  
       //third test: test enable function 
-      //we do this by setting enable = 0 for 1500ns, during which time the counter should halt entirely, meaning no change in LED displays either 
-      //after 1500ns we set enable back to 1 and counter should resume counting where it left off  
       #1000; 
-      rst_n = 1'b1; 
-       
+      rst_n = 1'b1;       
       en = 1'b0; 
       
-      #1000; ////wait 1500ns then set enable = 1 to test if enable works
+      #1000;
       ena = 1'b1; 
   
       #900
