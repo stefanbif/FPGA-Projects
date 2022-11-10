@@ -1,12 +1,11 @@
 //===============================================================
 // ENGI 4054: Digital VLSI Design
-// Author: Shafiqul Hai
-// Date: Aug. 01, 2022
+// Date: Nov 10, 2022
 // Description: Top-level file including the instantiated blocks
 //              and net connections.
 //===============================================================
 
-module ADDTEST(
+module COUNTER_TEST(
 
 	//////////// CLOCK //////////
 
