@@ -8,21 +8,25 @@ module counter(
     output reg [7:0] DISP0_preload, 
     output reg [7:0] DISP1, 
     output reg [7:0] DISP0, 
-    output reg [5:0] count_value_show, 
-    output reg count_clk_show); 
+//    output reg [5:0] count_value_show, 
+//    output reg count_clk_show
+);
     
-    integer load_value = 0; 
-    integer up_end = 31;
-    integer down_end = 0;
-    integer count_value_number = 0; //set the counter to 0 initially
-    reg count_up = 1'b1; // Initialize count_up
-    
-    integer count_value_frequency = 0; //for dividing clock 
-    localparam div_value = 2; //124999999 would be value if implementing on FPGA 
-    reg count_clk = 1'b1; //new clock at lower frequency  
-    
-    integer digit1 = 0; //lower digit on LED
-    integer digit2 = 0; //upper digit (10th) on LED
+    	integer load_value = 0;
+	integer load_digit0 =0;
+	integer load_digit1 =0;
+	reg count_up = 1'b1; // Initialize count_up
+	
+    	integer count_value_frequency = 0; //for dividing clock 
+	localparam div_value = 2; //SET to 124999999 for FPGA implementation 
+    	reg count_clk = 1'b1; //new clock at lower frequency  
+	
+	integer count_value_number = 0; //set the counter to 0 initially
+    	integer up_end = 31;
+    	integer down_end = 0;	
+	
+    	integer count_digit0 = 0; //lower digit on LED
+    	integer count_digit1 = 0; //upper digit (10th) on LED
   
  
 
@@ -41,8 +45,8 @@ module counter(
 	 else if(en) 
       begin 
         load_value <= preload[5]*32 + preload[4]*16 + preload[3]*8 + preload[2]*4 + preload[1]*2 + preload[0]*1; // convert binary to decimal
-        
-			case(load_value % 10)        	//Divide the decimal value of preload by 10,                                                  
+        load_digit0 <= load_value % 10;
+		case(load_digit0)        	                                               
 		  0: DISP0_preload <= 7'b1000000; 		//the remainder will be displayed in the 1's place on the display
 		  1: DISP0_preload <= 7'b1111001; 		// Ex. 23%10 = 3
 		  2: DISP0_preload <= 7'b0100100; 
@@ -55,20 +59,20 @@ module counter(
 		  9: DISP0_preload <= 7'b0011000; 
 		  default: DISP0_preload <= 7'b0000111; 
 		endcase 
-		
-			case(load_value / 10)        	//Divide the decimal value of preload by 10,   
-          0: DISP1_preload <= 7'b1000000;		// since the variable type is an integer, the remainder will not be stored.  
-          1: DISP1_preload <= 7'b1111001;		// The result will by the digit in the 10's place, which will be shown in the 10's place on the display.
-          2: DISP1_preload <= 7'b0100100; 
-          3: DISP1_preload <= 7'b0110000; 
-          4: DISP1_preload <= 7'b0011001; 
-          5: DISP1_preload <= 7'b0010010; 
-          6: DISP1_preload <= 7'b0000010; 
-          7: DISP1_preload <= 7'b1111000; 
-          8: DISP1_preload <= 7'b0000000; 
-          9: DISP1_preload <= 7'b0011000; 
-          default: DISP1_preload <= 7'b0000111; 
-        endcase       
+	  load_digit1 <= load_value / 10;
+		case(load_digit1)        	//Divide the decimal value of preload by 10,   
+		  0: DISP1_preload <= 7'b1000000;		// since the variable type is an integer, the remainder will not be stored.  
+		  1: DISP1_preload <= 7'b1111001;		// The result will by the digit in the 10's place, which will be shown in the 10's place on the display.
+		  2: DISP1_preload <= 7'b0100100; 
+		  3: DISP1_preload <= 7'b0110000; 
+		  4: DISP1_preload <= 7'b0011001; 
+		  5: DISP1_preload <= 7'b0010010; 
+		  6: DISP1_preload <= 7'b0000010; 
+		  7: DISP1_preload <= 7'b1111000; 
+		  8: DISP1_preload <= 7'b0000000; 
+		  9: DISP1_preload <= 7'b0011000; 
+		  default: DISP1_preload <= 7'b0000111; 
+		endcase       
       
 		end      
   
@@ -119,8 +123,7 @@ module counter(
       count_clk <= count_clk; 			// count_clk remains constant otherwise
        
    
-    count_clk_show = count_clk;   // the value for the slow clock(count_clk) is assigned to a variable of a type which can be displayed 
-	//assign count_clk_show = count_clk; 
+  
 	
    end         
 		//
@@ -187,33 +190,33 @@ module counter(
 	else
       begin 
  
-        digit1 <= count_value_number%10; 
-        case(digit1) 
-          0: DISP0 <= 7'b1000000; 
-          1: DISP0 <= 7'b1111001; 
-          2: DISP0 <= 7'b0100100; 
-          3: DISP0 <= 7'b0110000; 
-          4: DISP0 <= 7'b0011001; 
-          5: DISP0 <= 7'b0010010; 
-          6: DISP0 <= 7'b0000010; 
-          7: DISP0 <= 7'b1111000; 
-          8: DISP0 <= 7'b0000000; 
-          9: DISP0 <= 7'b0011000; 
+        count_digit0 <= count_value_number%10; 
+	      case(count_digit0) 
+		  0: DISP0 <= 7'b1000000; 
+		  1: DISP0 <= 7'b1111001; 
+		  2: DISP0 <= 7'b0100100; 
+		  3: DISP0 <= 7'b0110000; 
+		  4: DISP0 <= 7'b0011001; 
+		  5: DISP0 <= 7'b0010010; 
+		  6: DISP0 <= 7'b0000010; 
+		  7: DISP0 <= 7'b1111000; 
+		  8: DISP0 <= 7'b0000000; 
+		  9: DISP0 <= 7'b0011000; 
           default: DISP0 <= 7'b0000111; 
         endcase 
         
-        digit2 <= count_value_number/10;  
-         case(digit2) 
-          0: DISP1 <= 7'b1000000; 
-          1: DISP1 <= 7'b1111001; 
-          2: DISP1 <= 7'b0100100; 
-          3: DISP1 <= 7'b0110000; 
-          4: DISP1 <= 7'b0011001; 
-          5: DISP1 <= 7'b0010010; 
-          6: DISP1 <= 7'b0000010; 
-          7: DISP1 <= 7'b1111000; 
-          8: DISP1 <= 7'b0000000; 
-          9: DISP1 <= 7'b0011000; 
+        count_digit1 <= count_value_number/10;  
+	      case(count_digit1) 
+		  0: DISP1 <= 7'b1000000; 
+		  1: DISP1 <= 7'b1111001; 
+		  2: DISP1 <= 7'b0100100; 
+		  3: DISP1 <= 7'b0110000; 
+		  4: DISP1 <= 7'b0011001; 
+		  5: DISP1 <= 7'b0010010; 
+		  6: DISP1 <= 7'b0000010; 
+		  7: DISP1 <= 7'b1111000; 
+		  8: DISP1 <= 7'b0000000; 
+		  9: DISP1 <= 7'b0011000; 
           default: DISP1 <= 7'b0000111; 
         endcase 
       end
