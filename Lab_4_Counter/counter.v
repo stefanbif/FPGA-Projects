@@ -21,8 +21,8 @@ module counter(
     localparam div_value = 2; //124999999 would be value if implementing on FPGA 
     reg count_clk = 1'b1; //new clock at lower frequency  
     
-    integer digit_1 = 0; //lower digit on LED
-    integer digit_2 = 0; //upper digit (10th) on LED
+    integer digit1 = 0; //lower digit on LED
+    integer digit2 = 0; //upper digit (10th) on LED
   
  
 
@@ -187,8 +187,8 @@ module counter(
 	else
       begin 
  
-        digit_1 <= count_value_number%10; 
-        case(digit_1) 
+        digit1 <= count_value_number%10; 
+        case(digit1) 
           0: DISP0 <= 7'b1000000; 
           1: DISP0 <= 7'b1111001; 
           2: DISP0 <= 7'b0100100; 
@@ -202,8 +202,8 @@ module counter(
           default: DISP0 <= 7'b0000111; 
         endcase 
         
-        digit_2 <= count_value_number/10;  
-         case(digit_2) 
+        digit2 <= count_value_number/10;  
+         case(digit2) 
           0: DISP1 <= 7'b1000000; 
           1: DISP1 <= 7'b1111001; 
           2: DISP1 <= 7'b0100100; 
