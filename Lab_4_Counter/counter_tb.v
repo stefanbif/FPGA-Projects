@@ -19,11 +19,11 @@ module counter_tb;
               .rst_n(rst_n), 
               .toggle(toggle), 
               .en(en), 
-              .pre_load(pre_load), 
+              .preload(preload), 
               .DISP1_preload(DISP1_preload), 
               .DISP0_preload(DISP0_preload), 
               .DISP1(DISP1), 
-              .DISP0(DISP0) 
+              .DISP0(DISP0), 
               .count_value_disp(count_value_disp), 
               .count_clk_disp(count_clk_disp)
              ); 
@@ -44,7 +44,7 @@ module counter_tb;
       rst_n  = 1'b1; 
       toggle = 1'b0; 
       en    = 1'b1; 
-      preload <= 6'b100011; 
+      preload <= 6'b000101; // 5'd
            
  
       //first test: test the reset function  
@@ -60,18 +60,34 @@ module counter_tb;
       en = 1'b1;    
       
       //second test: test the toggle function  
-      #2800; 
+      #3000; 
       rst_n = 1'b1;
       toggle = 1'b1;   
       en = 1'b1; 
+      
+      #3000; 
+      rst_n = 1'b1;
+      toggle = 1'b0;   
+      en = 1'b1; 
+ 
+      #3000; 
+      rst_n = 1'b1;
+      toggle = 1'b1;   
+      en = 1'b1;
+      
+      #3000; 
+      rst_n = 1'b1;
+      toggle = 1'b0;   
+      en = 1'b1;            
+      
  
       //third test: test enable function 
-      #1000; 
+      #8000; 
       rst_n = 1'b1;       
       en = 1'b0; 
       
       #1000;
-      ena = 1'b1; 
+      en = 1'b1; 
   
       #900
       toggle = 1'b0;
@@ -81,3 +97,4 @@ module counter_tb;
    end 
  
 endmodule 
+
