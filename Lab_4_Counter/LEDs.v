@@ -1,9 +1,9 @@
 
 module sw(
-	input 		          		clk,
-	input 						rst_n,
-  output		 reg    [9:0]	led,
-  input 		        [6:0]	ctrl
+	input 	clk,
+	input 	rst_n,
+  	output	reg     [9:0]	led,
+  	input 		[6:0]	ctrl
 );
 
 
