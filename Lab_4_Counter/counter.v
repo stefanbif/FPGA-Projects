@@ -7,9 +7,9 @@ module counter(
     output reg [7:0] DISP1_preload, 
     output reg [7:0] DISP0_preload, 
     output reg [7:0] DISP1, 
-    output reg [7:0] DISP0 
-//    output reg [5:0] count_value_show, 
-//    output reg count_clk_show
+    output reg [7:0] DISP0, 
+	output reg [5:0] count_value_disp, 
+    output reg count_clk_disp
 );
     
     	integer load_value = 0;
@@ -123,7 +123,7 @@ module counter(
       count_clk <= count_clk; 			// count_clk remains constant otherwise
        
    
-  
+       count_clk_disp = count_clk;
 	
    end         
 		//
@@ -169,7 +169,7 @@ module counter(
 	else 								//CONDITION 2.3: EN=0: DISABLE COUNTER (HOLD CURRENT VALUE) 
 		count_value_number <= count_value_number; 
     
-  // count_value_show = count_value_number;
+  count_value_disp = count_value_number;
    // **assign count_value_show = count_value_number; 
   end
 		//
