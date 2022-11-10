@@ -37,8 +37,7 @@ module ADDTEST(
 //=======================================================
 // temp signal to connect synchronizer output to the input of the counter
 	wire en_d, TGL_d, PL0_d, PL1_d, PL2_d,PL3_d, PL4_d, PL5_d; 
-// temp signal to connect output of the counter to the 7-segment
-	wire preload0_temp, preload1_temp, disp0_temp, disp1_temp;
+
 
 
 //=======================================================
