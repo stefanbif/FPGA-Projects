@@ -15,7 +15,7 @@ module counter(
     integer up_end = 31;
     integer down_end = 0;
     integer count_value_number = 0; //set the counter to 0 initially
-    reg count_up = 1'b1; //
+    reg count_up = 1'b1; // Initialize count_up
     
     integer count_value_frequency = 0; //for dividing clock 
     localparam div_value = 2; //124999999 would be value if implementing on FPGA 
@@ -166,7 +166,7 @@ module counter(
 	else 								//CONDITION 2.3: EN=0: DISABLE COUNTER (HOLD CURRENT VALUE) 
 		count_value_number <= count_value_number; 
     
-   count_value_show = count_value_number;
+  // count_value_show = count_value_number;
    // **assign count_value_show = count_value_number; 
   end
 		//
