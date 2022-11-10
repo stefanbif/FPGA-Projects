@@ -10,19 +10,20 @@ module counter(
     output reg [7:0] DISP0, 
 	output reg [5:0] count_value_disp, 
     output reg count_clk_disp
+    
 );
     
-    	integer load_value = 0;
+ 	integer load_value = 0;
 	integer load_digit0 =0;
 	integer load_digit1 =0;
 	reg count_up = 1'b1; // Initialize count_up
 	
-    	integer count_value_frequency = 0; //for dividing clock 
+ 	integer count_value_frequency = 0; //for dividing clock 
 	localparam div_value = 2; //SET to 124999999 for FPGA implementation 
-    	reg count_clk = 1'b1; //new clock at lower frequency  
+ 	reg count_clk = 1'b1; //new clock at lower frequency  
 	
 	integer count_value_number = 0; //set the counter to 0 initially
-    	integer up_end = 31;
+    	integer up_end = 0;
     	integer down_end = 0;	
 	
     	integer count_digit0 = 0; //lower digit on LED
@@ -35,7 +36,7 @@ module counter(
  always @(posedge clk) 	
   begin 						
     
-	 if(!rst) 
+	 if(!rst_n) 
       begin 
            DISP1 <= 7'b0111111; //set disp1 to 0 
            DISP0 <= 7'b0111111; //set disp0 to 0 
@@ -45,6 +46,7 @@ module counter(
 	 else if(en) 
       begin 
         load_value <= preload[5]*32 + preload[4]*16 + preload[3]*8 + preload[2]*4 + preload[1]*2 + preload[0]*1; // convert binary to decimal
+        up_end = load_value;
         load_digit0 <= load_value % 10;
 		case(load_digit0)        	                                               
 		  0: DISP0_preload <= 7'b1000000; 		//the remainder will be displayed in the 1's place on the display
@@ -137,7 +139,7 @@ module counter(
    always @(posedge count_clk)          
    begin 
     
-	if (!rst)                          	//CONDITION 1: RESET=0, DISABLE OUTPUT
+	if (!rst_n)                          	//CONDITION 1: RESET=0, DISABLE OUTPUT
        count_value_number <= 0; 
 //    
 	else                                //CONDITION 2.1: RESET=1, ENABLE OUTPUT
@@ -147,7 +149,7 @@ module counter(
 		  if(count_up) 							//CONDITION 2.2.1: COUNT_UP=1, COUNT UP                  
 			begin 
 			  
-			  if(count_value_number == up_end) 			//CONDITION 2.2.1.1: count_value_number=up_end(31), SET count_value_number=0
+			  if(count_value_number == load_value) 			//CONDITION 2.2.1.1: count_value_number=up_end(31), SET count_value_number=0
 				count_value_number <= 0; 
 			  else 										//CONDITION 2.2.1.2: count_value_number != up_end(31), INCREMENT count_value_number
 				count_value_number <= count_value_number + 1; 
@@ -181,7 +183,7 @@ module counter(
 // DISPLAY count_value_number ON 7-SEGMENT DISPLAY
  always @(posedge clk) //at posedge of 50MHz clock,
   begin 
-    if(!rst) //
+    if(!rst_n) //
       begin 
            DISP1 <= 7'b0111111; //set disp1 to 0 
            DISP0 <= 7'b0111111; //set disp0 to 0 
