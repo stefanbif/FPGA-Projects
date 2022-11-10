@@ -1,6 +1,6 @@
 module counter(
     input clk, 
-    input rst, 
+    input rst_n, 
     input toggle, 
     input en, 
     input [5:0] preload, 
