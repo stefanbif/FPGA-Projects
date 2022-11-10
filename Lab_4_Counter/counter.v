@@ -12,8 +12,8 @@ module counter(
     output reg count_clk_show); 
     
     integer load_value = 0; 
-	integer up_end = 31;
-	integer down_end = 0;
+    integer up_end = 31;
+    integer down_end = 0;
     integer count_value_number = 0; //set the counter to 0 initially
     reg count_up = 1'b1; //
     
