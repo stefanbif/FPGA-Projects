@@ -7,7 +7,7 @@ module counter(
     output reg [7:0] DISP1_preload, 
     output reg [7:0] DISP0_preload, 
     output reg [7:0] DISP1, 
-    output reg [7:0] DISP0, 
+    output reg [7:0] DISP0 
 //    output reg [5:0] count_value_show, 
 //    output reg count_clk_show
 );
