@@ -36,11 +36,10 @@ module ADDTEST(
 //  REG/WIRE declarations
 //=======================================================
 // temp signal to connect synchronizer output to the input of the counter
-	wire en_d, PL0_d, PL1_d, PL2_d,PL3_d, PL4_d, PL5_d; 
+	wire en_d, TGL_d, PL0_d, PL1_d, PL2_d,PL3_d, PL4_d, PL5_d; 
 // temp signal to connect output of the counter to the 7-segment
 	wire preload0_temp, preload1_temp, disp0_temp, disp1_temp;
- // temp signal to connect output of the counter to the 7-segment
-	wire preload0_temp, preload1_temp, disp0_temp, disp1_temp;
+
 
 //=======================================================
 //  Structural coding
@@ -91,35 +90,36 @@ sync u_sync7(
 	.in(SW[6]),
 	.out(PL5_d)
 ) ; 
-	
-	
-// full adder
-adder u_adder(
+sync u_syn87(
 	.rst_n(KEY[0]),
 	.clk(CLOCK2_50),
-	.in_x(A_d),
-	.in_y(B_d),
-	.cin(C_d),
-	.sum_out(sum_temp),
-	.cout(carry_temp)
+	.in(KEY[1]),
+	.out(TGL_d)
+) ; 	
+	
+// COUNTER
+adder u_counter(
+	.rst_n(KEY[0]),
+	.clk(CLOCK2_50),
+	.toggle(TGL_d),
+	.en(en_d),
+	.preload({PL5_d,PL4_d,PL3_d,PL2_d,PL1_d,PL0_d}),
+	.DISP1_preload(HEX3),
+	.DISP0_preload(HEX2),
+	.DISP1(HEX1),
+	.DISP0(HEX0)
 );
+
 // control signal
 sw u_sw(
 	.rst_n(KEY[0]),
 	.clk(CLOCK2_50),
-	.ctrl({C_d,B_d,A_d}),
-	//.led(LEDR[2:0])
-    .led(LEDR)
+	.ctrl({PL5_d,PL4_d,PL3_d,PL2_d,PL1_d,PL0_d,en_d}),
+	//.led(LEDR[6:0])
+    	.led(LEDR)
 );
-// 7-segments display
-disp u_disp(
-	.rst_n(KEY[0]),
-	.clk(CLOCK2_50),
-	.sum_in(sum_temp),
-	.carry_in(carry_temp),
-	.d0(HEX0),
-	.d1(HEX1)
-);
+
+
 
 
 endmodule
