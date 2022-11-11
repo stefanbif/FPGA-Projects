@@ -19,7 +19,7 @@ module counter(
 	reg count_up = 1'b1; // Initialize count_up
 	
  	integer count_value_frequency = 0; //for dividing clock 
-	localparam div_value = 2; //SET to 124999999 for FPGA implementation 
+	localparam div_value = 12499999; //SET to 124999999 for FPGA implementation 
  	reg count_clk = 1'b1; //new clock at lower frequency  
 	
 	integer count_value_number = 0; //set the counter to 0 initially
@@ -38,8 +38,8 @@ module counter(
     
 	 if(!rst_n) 
       begin 
-           DISP1 <= 7'b0111111; //set disp1 to 0 
-           DISP0 <= 7'b0111111; //set disp0 to 0 
+           DISP1_preload <= 7'b0111111; //set disp1 to 0 
+           DISP0_preload <= 7'b0111111; //set disp0 to 0 
       end 
     
 	 
