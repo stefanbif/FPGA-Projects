@@ -2,8 +2,8 @@
 module sw(
 	input 	clk,
 	input 	rst_n,
-  	output	reg     [9:0]	led,
-  	input 		[6:0]	ctrl
+	output	reg     [9:0]	led,
+	input 		[6:0]	ctrl
 );
 
 
@@ -11,8 +11,8 @@ module sw(
 always @(posedge clk)
 	begin
 		if (!rst_n)
-			led <= 9'h1FF ;
+                        led <= 9'h1FF ;
 		else 
-      led <= {7'b0000000, ctrl} ;
+		        led <= {7'b0000000, ctrl} ;
 	end
 endmodule
