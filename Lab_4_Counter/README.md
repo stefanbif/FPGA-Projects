@@ -1,9 +1,9 @@
 
 
-## ADDER RTL VIEWER:
+# ADDER RTL VIEWER:
 - its an example of how the modules for the counter code go together
 ![image](https://user-images.githubusercontent.com/73149111/201182861-941be672-5531-49f6-8797-8bf0ac833e66.png)
 
-## Counter Pin Assignment 
+# Counter Pin Assignment:
 - the full pin assignment is in the .csv file
 ![image](https://user-images.githubusercontent.com/73149111/201393794-15340aef-1a4a-45fa-bc90-eff7aa8c27a7.png)
