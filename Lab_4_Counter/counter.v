@@ -8,12 +8,12 @@ module counter(
     output reg [7:0] DISP0_preload, 
     output reg [7:0] DISP1, 
     output reg [7:0] DISP0, 
-	output reg [5:0] count_value_disp, 
-    output reg count_clk_disp
+	output reg [5:0] count_value_disp, // 6 bit register to store the current count value, used for modelsim
+    output reg count_clk_disp		 //  1 bit which is used to display the slow clock in modelsim
     
 );
     
- 	integer load_value = 0;
+ 	integer load_value = 0; // initialize the loaded value to 0
 	integer load_digit0 =0;
 	integer load_digit1 =0;
 	reg count_up = 1'b1; // Initialize count_up
