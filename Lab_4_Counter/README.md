@@ -8,3 +8,13 @@
 # Counter Pin Assignment:
 - the full pin assignment is in the .csv file
 ![image](https://user-images.githubusercontent.com/73149111/201393794-15340aef-1a4a-45fa-bc90-eff7aa8c27a7.png)
+
+
+
+# Test toggle and Reset
+- reset = 0 between t=500ns and t=1500ns
+- toggle = 1 from t=0 to t=3000ns
+  - counting up
+- toggle = 0 after t=3000ns 
+  - counting down
+![image](https://user-images.githubusercontent.com/73149111/203878855-6f96b118-ce33-48b6-9ec0-e4c7c9e75edc.png)
