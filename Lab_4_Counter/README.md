@@ -28,3 +28,7 @@
 - Enable = 0 after t=12000ns
   - counting stops
 ![image](https://user-images.githubusercontent.com/73149111/203879301-ad99a04d-be67-40b3-98b1-d0cb726d2236.png)
+
+
+# Counter RTL Viewer
+![image](https://user-images.githubusercontent.com/73149111/203880950-0c414b19-d82b-4bc7-96cb-157351e14cfd.png)
