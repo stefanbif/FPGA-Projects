@@ -88,7 +88,7 @@ sync u_sync7(
 	.in(SW[6]),
 	.out(PL5_d)
 ) ; 
-sync u_syn87(
+sync u_syn8(
 	.rst_n(KEY[0]),
 	.clk(CLOCK2_50),
 	.in(KEY[1]),
