@@ -21,8 +21,10 @@
 
 - toggle = 1 from t=7000 to t=9000ns
   - counting up
-- toggle = 0 after t=9000ns 
+- toggle = 0 from t=9000ns to t=11000ns
   - counting down
+- toggle = 1 after t=11000ns 
+  - counting up
 - Enable = 0 after t=12000ns
   - counting stops
 ![image](https://user-images.githubusercontent.com/73149111/203879301-ad99a04d-be67-40b3-98b1-d0cb726d2236.png)
