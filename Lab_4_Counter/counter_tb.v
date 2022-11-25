@@ -42,57 +42,53 @@ module counter_tb;
     begin              
       
       rst_n  = 1'b1; 
-      toggle = 1'b0; 
+      toggle = 1'b1; 
       en    = 1'b1; 
       preload <= 6'b000101; // 5'd
            
  
       //first test: test the reset function  
       #500;
-      rst_n = 1'b0; 
-      toggle = 1'b0;
-      en = 1'b1;  
+      rst_n = 1'b0;   
       
  
-      #500;         
+      #1000;         
       rst_n = 1'b1; 
-      toggle = 1'b0;
-      en = 1'b1;    
+  
       
       //second test: test the toggle function  
-      #3000; 
-      rst_n = 1'b1;
+      #500; 
+
       toggle = 1'b1;   
-      en = 1'b1; 
-      
-      #3000; 
-      rst_n = 1'b1;
-      toggle = 1'b0;   
-      en = 1'b1; 
  
-      #3000; 
-      rst_n = 1'b1;
-      toggle = 1'b1;   
-      en = 1'b1;
-      
-      #3000; 
-      rst_n = 1'b1;
+  
+      #1000; 
       toggle = 1'b0;   
-      en = 1'b1;            
+ 
+      #4000; 
+      toggle = 1'b1;   
+ 
+      
+      #2000; 
+      toggle = 1'b0;   
+      
+	  #2000; 
+      toggle = 1'b1;            
       
  
       //third test: test enable function 
-      #8000; 
-      rst_n = 1'b1;       
+      #1000; 
+       
       en = 1'b0; 
       
-      #1000;
+      #2000;
       en = 1'b1; 
   
       #900
       toggle = 1'b0;
             
-      #500; 
+      #3000; 
+	  toggle = 1'b1;
  
    end 
  
