@@ -11,7 +11,7 @@
 
 
 
-# Test toggle and Reset
+# Test Toggle and Reset
 - reset = 0 between t=500ns and t=1500ns
 - toggle = 1 from t=0 to t=3000ns
   - counting up
