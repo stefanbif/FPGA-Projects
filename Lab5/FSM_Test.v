@@ -25,7 +25,7 @@ module FSM(
 	output	reg     [6:0]		HEX1,	//NextState[1]
 	output	reg     [6:0]		HEX2,	//NextState[2]
 	//output		     [6:0]		HEX3,
-	output	reg		[6:0]		HEX4,	//output reg [5:0] count_z
+	output	reg	[6:0]		HEX4,	//output reg [5:0] count_z
 	output	reg     [6:0]		HEX5,	//output reg [5:0] count_z
 	//output		     [6:0]		HEX6,
 	output	reg     [6:0]		HEX7	//CountOutput: will show the 0 or 1 values of output 
@@ -104,5 +104,4 @@ module FSM(
 		endcase	
 	end
 	//Output Logic
-	// test
 endmodule
