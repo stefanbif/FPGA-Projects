@@ -98,8 +98,7 @@ module FSM(
 			
 			Success : begin 
 				NextState = Start;
-				count_z<=count_z+1;
-				CountOutput = 1;
+
 			end
 		endcase	
 	end
