@@ -1,2 +1,2 @@
 # Lab5 Notes
-![image](https://user-images.githubusercontent.com/119612451/205132595-0587ab99-b0ee-49de-a21e-213796b6a890.png)
+![image](https://user-images.githubusercontent.com/119612451/205674726-ce58555f-7a96-4856-949a-a5cdfb2a2d17.png)
