@@ -1,2 +1,2 @@
 # FINAL DOCS
-[Project_Description_EELE4054_2022F.pdf](https://github.com/stefanbif/VLSI/files/10155523/Project_Description_EELE4054_2022F.pdf)
+<img width="929" alt="image" src="https://user-images.githubusercontent.com/73149111/205677035-0abb8edf-de28-4873-ac6f-99628973099c.png">
