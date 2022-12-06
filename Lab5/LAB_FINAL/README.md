@@ -1,6 +1,7 @@
 # FINAL DOCS
-![image](https://user-images.githubusercontent.com/73149111/205776504-a2ebce95-f1a7-46fd-be6a-2d52ad955430.png)
-![image](https://user-images.githubusercontent.com/73149111/205776595-c455457c-aec7-491e-a9ff-afd313866361.png)
+![image](https://user-images.githubusercontent.com/73149111/205777500-91e03f22-e6f9-4fe6-951e-9ae2017d2c78.png)
+![image](https://user-images.githubusercontent.com/73149111/205777625-167fae22-c1e4-4935-8b8a-1a461eda66c4.png)
+
 
 
 
