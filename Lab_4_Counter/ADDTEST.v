@@ -1,9 +1,6 @@
-//===============================================================
-// ENGI 4054: Digital VLSI Design
-// Author: Stefan Bifolchi
-// Date: Nov. 01, 2022
-// Description: Top-level file including the instantiated blocks and net connections.
-//===============================================================
+
+// Top-level file including the instantiated blocks and net connections.
+
 
 module ADDTEST(
 
