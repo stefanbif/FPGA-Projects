@@ -1,17 +1,17 @@
 //===============================================================
 // ENGI 4054: Digital VLSI Design
-// Author: Shafiqul Hai
-// Date: Aug. 01, 2022
+// Author: Stefan Bifolchi
+// Date: Nov. 01, 2022
 // Description: Top-level file including the instantiated blocks and net connections.
 //===============================================================
 
 module ADDTEST(
 
 	//////////// CLOCK //////////
-	input 		          		CLOCK2_50,  //sh change the name here according to system builder ADDTEST version
+	input 		          		CLOCK2_50,  
 
 	//////////// SEG7 //////////
-	output		     [6:0]		HEX0,  //sh chenged to 6:0
+	output		     [6:0]		HEX0,  
 	output		     [6:0]		HEX1,
 //	output		     [7:0]		HEX2,
 //	output		     [7:0]		HEX3,
@@ -22,10 +22,10 @@ module ADDTEST(
 	input 		     [1:0]		KEY,
 
 	//////////// LED //////////
-	output		     [5:0]		LEDR, // only use the least 3 bits. // sh from 9:0 to 5:0
+	output		     [5:0]		LEDR, 
 
 	//////////// SW //////////
-	input 		     [2:0]		SW  // only use the least 3 bits
+	input 		     [2:0]		SW  
 );
 
 
